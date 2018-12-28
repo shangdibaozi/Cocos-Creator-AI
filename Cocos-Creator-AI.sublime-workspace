@@ -401,9 +401,29 @@
 			]
 		]
 	},
-	"build_system": "Packages/User/python3.sublime-build",
+	"build_system": "Packages/User/javascript.sublime-build",
 	"build_system_choices":
 	[
+		[
+			[
+				[
+					"Packages/JSHint/JSHint.sublime-build",
+					""
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				],
+				[
+					"Packages/User/javascript.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/javascript.sublime-build",
+				""
+			]
+		],
 		[
 			[
 				[
@@ -433,9 +453,13 @@
 	"command_palette":
 	{
 		"height": 104.0,
-		"last_filter": "jshi",
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"build",
+				"Build With: javascript"
+			],
 			[
 				"jshi",
 				"Build With: JSHint"
@@ -501,6 +525,27 @@
 	},
 	"file_history":
 	[
+		"/D/CocosCreator2/resources/engine/extensions/spine/skeleton-data.js",
+		"/D/CocosCreator2/resources/engine/bin/cocos2d-js-for-preview.js",
+		"/G/cocoscreator/SpineTest/build/web-mobile/cocos2d-js.js",
+		"/G/cocoscreator/SpineTest/build/web-mobile/cocos2d-js-min.js",
+		"/E/game/sanguoH5/build/web-mobile/src/project.dev.0e645.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/render-engine.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/value-types/mat4.js",
+		"/D/CocosCreator/resources/engine/cocos2d/core/components/CCComponent.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorld1/s1MinerOwnedStates.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/CCNode.js",
+		"/D/CocosCreator/resources/engine/cocos2d/shaders/CCShaders.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/render-flow.js",
+		"/E/game/sanguoH5/build/web-mobile/src/project.dev.78d5b.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/render-engine.canvas.js",
+		"/E/github/Cocos-Creator-AI/Cocos-Creator-AI.sublime-project",
+		"/E/github/Cocos-Creator-AI/assets/Script/WestWorld1/Miner.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/WestWorld1/Constants.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/WestWorld1/State.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorld1/s1main.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorld1/s1Miner.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/WestWorld1/main.js",
 		"/C/Users/10948/Desktop/LandGameUIMediator - 副本.js",
 		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/model/proxy/LandTableCardDataProxy.js",
 		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/plugins/KBEngine.js",
@@ -546,7 +591,6 @@
 		"/D/CocosCreator/resources/engine/cocos2d/core/component-scheduler.js",
 		"/D/CocosCreator/resources/engine/extensions/ccpool/CCPool.js",
 		"/D/CocosCreator/resources/engine/cocos2d/shaders/CCGLProgram.js",
-		"/D/CocosCreator/resources/engine/cocos2d/shaders/CCShaders.js",
 		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/controller/command/LandPrepModelCommand.js",
 		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/model/remoteProxy/LandGameProxy.js",
 		"/E/game/Html5Game/Server/Project/config.reg",
@@ -574,7 +618,6 @@
 		"/D/CocosCreator/resources/engine/cocos2d/core/components/CCScrollView.js",
 		"/G/cocoscreator/MoveItem/assets/Script/MoveItem.js",
 		"/G/cocoscreator/MoveItem/assets/Script/Item.js",
-		"/D/CocosCreator/resources/engine/cocos2d/core/components/CCComponent.js",
 		"/D/CocosCreator/resources/engine/extensions/dragonbones/CCTextureData.js",
 		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/view/ui/LandGameResultUI.js",
 		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/view/ui/LandLogonUI.js",
@@ -609,26 +652,7 @@
 		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/MessageDef/CMD_Land.js",
 		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/MessageDef/CMD_ProtocolBase.js",
 		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/AnnounceUIMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/DirectorMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/GameLobbySceneMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/GameLobbyUIMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/LoadingUIMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/LoginUIMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/MsgUIMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/RankUIMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/ShopUIMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/controller/command/EnterMainSceneCommand.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/.jshintrc",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/LogonUIMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/model/domain/AnnData.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/plugins/puremvc.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/controller/command/GlobalDataCommand.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/controller/command/PrepControllerCommand.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/controller/command/StartupCommand.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/model/domain/GameConfig.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/model/domain/GlobalUnits.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/model/domain/ServerListManager.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/model/domain/UserManager.js"
+		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/DirectorMediator.js"
 	],
 	"find":
 	{
@@ -647,6 +671,91 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"_renderData",
+			"appendQuad",
+			"_lineBreakWithoutSpaces",
+			"_alignText",
+			"appendQuad",
+			"_renderData",
+			"updateRenderData",
+			"LetterInfo = function()",
+			"renderData",
+			"dataLength",
+			"appendQuad",
+			"dataLength",
+			"release",
+			"getDependsRecursively",
+			"__allocedDatas",
+			"destroyRenderData",
+			"_renderDatas",
+			"renderDatas",
+			"_renderDatas",
+			"_defines",
+			"_de",
+			"_defines",
+			"_batchedModels",
+			"_readAttachmentData",
+			"_renderDatas",
+			"_renderData",
+			"_renderDatas",
+			"destroyRenderData",
+			"_readAttachmentData",
+			"destroyRenderData",
+			"Datas",
+			"datas",
+			"dataLength",
+			"_readAttachmentData",
+			"length",
+			"Length",
+			"length",
+			"renderDatas",
+			"_renderDatas",
+			"_readAttachmentData",
+			"updateRenderData",
+			"_renderDatas",
+			"genRenderDatas",
+			"updateRenderData",
+			"genRenderDatas",
+			"dataLength",
+			"alloc",
+			"requestRenderData",
+			"defaultAnimation",
+			"_renderDatas",
+			"_readAttachmentData",
+			"Pool",
+			"_indices",
+			"indices",
+			"_indices",
+			"indices",
+			"_indices",
+			"RenderData",
+			"_readAttachmentData",
+			"genRenderDatas",
+			"_readAttachmentData",
+			"trackEntryPool",
+			"instantiator",
+			"setAnimationStateData",
+			"_state",
+			"setAnimation",
+			"function Pool",
+			"Pool",
+			"hasLoadedSkeletonData",
+			"loadSkelonData",
+			"obtain",
+			"_skeleton",
+			"_rootBone",
+			"_updateSkeletonData",
+			"setSkeletonData",
+			"_updateSkeletonData",
+			"skeletonMap",
+			"loadSkelonData",
+			"skeletonMap",
+			"skeletonData",
+			"multiply",
+			"BaseRenderData",
+			"RenderData",
+			"function RenderData()",
+			"GoHomeAndSleepTilRested",
 			"chair_id",
 			"uncall_tip_img_1",
 			"landScore",
@@ -689,92 +798,7 @@
 			"tagGameServer",
 			"this.",
 			",",
-			"tagTableStatus",
-			"=",
-			"this.",
-			"KBEngine.datatypes.UINT8.createFromStream(stream);",
-			"KBEngine.datatypes.INT32.createFromStream(stream)",
-			"KBEngine.datatypes.INT8.createFromStream(stream);",
-			"KBEngine.datatypes.UINT16.createFromStream(stream);",
-			"KBEngine.datatypes.UINT32.createFromStream(stream);",
-			"NetConstants",
-			"bindTexture",
-			"1.0 * ",
-			"-",
-			"<",
-			"start - ",
-			"subOutCard",
-			"subGameEnd",
-			"GAME_END",
-			"subGameEnd",
-			"var datatypes = KBEngine.datatypes;",
-			"datatypes.INT32.createFromStream(stream);",
-			"datatypes.UINT8.createFromStream(stream)",
-			"datatypes.UINT8.createFromStream(stream);",
-			"var datatypes = KBEngine.datatypes;",
-			"datatypes.UINT32.createFromStream(stream);",
-			"datatypes.UINT16.createFromStream(stream);",
-			"pGameStart.wLandUser",
-			"pGameStart",
-			"subOutCard",
-			"pOutCard",
-			"getUserCardCount",
-			"_card_count",
-			"card_data",
-			"loadCard",
-			"cardDic",
-			"pGameStart",
-			"loadCard",
-			"true",
-			"setOutCardBtnVisible",
-			"true",
-			"recoverGame",
-			"recoverGameData.wCurrentUser",
-			"pGameStart.wLandUser",
-			"enterRoom",
-			"wait_txt",
-			"registerTouchEvent",
-			"circle",
-			"LEFT_X",
-			"RIGHT_X",
-			"right_x",
-			"LEFT_X",
-			"left_x",
-			"me_y",
-			"resetGameData",
-			"showWaitUI",
-			"activeUserItem",
-			"userCome",
-			"setCallScoreBtnVisible",
-			"_tableDataProxy",
-			"onRegister",
-			"showWaitUI",
-			"chair_id",
-			"updateUserState",
-			"USER_STATE",
-			"userCome",
-			"bBackCard",
-			"_tableDataProxy",
-			"resetGameData",
-			"updateScore",
-			"inBreakThroughScen",
-			"cc.director.loadScene('LandBreakThroughScene');",
-			"cc.director.loadScene('LandMainScene');",
-			"LandMainScene",
-			"SEND_CARD",
-			"GAME_START",
-			"subGameStart",
-			"sendGFInfo",
-			"GameStatus",
-			"gameStatus",
-			"GameStatus",
-			"gameStatus",
-			"'mainCmdID' : constVal.MDM_GF_FRAME,\n\t'subCmdID' : constVal.SUB_GF_SCENE,",
-			"CMD_S_StatusPlay",
-			"SUB_GF_SCENE",
-			"GS_PLAYING",
-			"gfOption",
-			"SUB_GF_OPTION"
+			"tagTableStatus"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -786,7 +810,7 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"incremental_find":
@@ -828,6 +852,10 @@
 	{
 		"height": 126.0
 	},
+	"output.doc":
+	{
+		"height": 0.0
+	},
 	"output.exec":
 	{
 		"height": 126.0
@@ -852,6 +880,78 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"base-node",
+				"engine\\cocos2d\\core\\utils\\base-node.js"
+			],
+			[
+				"ccnode",
+				"engine\\cocos2d\\core\\CCNode.js"
+			],
+			[
+				"ccomp",
+				"engine\\cocos2d\\core\\components\\CCComponent.js"
+			],
+			[
+				"spine",
+				"engine\\extensions\\spine\\spine-assembler.js"
+			],
+			[
+				"cclabel",
+				"engine\\cocos2d\\core\\components\\CCLabel.js"
+			],
+			[
+				"skeleto",
+				"engine\\extensions\\spine\\skeleton-data.js"
+			],
+			[
+				"ccloade",
+				"engine\\cocos2d\\core\\load-pipeline\\CCLoader.js"
+			],
+			[
+				"skeleton",
+				"engine\\extensions\\spine\\Skeleton.js"
+			],
+			[
+				"ske",
+				"engine\\extensions\\spine\\skeleton-data.js"
+			],
+			[
+				"skele",
+				"engine\\extensions\\spine\\Skeleton.js"
+			],
+			[
+				"rendercomp",
+				"engine\\cocos2d\\core\\renderer\\webgl\\render-component-walker.js"
+			],
+			[
+				"render-eng",
+				"engine\\cocos2d\\core\\renderer\\render-engine.js"
+			],
+			[
+				"obj",
+				"engine\\cocos2d\\core\\platform\\CCObject.js"
+			],
+			[
+				"objec",
+				"engine\\polyfill\\object.js"
+			],
+			[
+				"render-flo",
+				"engine\\cocos2d\\core\\renderer\\render-flow.js"
+			],
+			[
+				"mat4",
+				"engine\\cocos2d\\core\\value-types\\mat4.js"
+			],
+			[
+				"render",
+				"engine\\cocos2d\\core\\renderer\\RendererWebGL.js"
+			],
+			[
+				"shader",
+				"engine\\cocos2d\\shaders\\CCShaders.js"
+			],
 			[
 				"landgameuime",
 				"Land\\assets\\Script\\view\\mediator\\LandGameUIMediator.js"
@@ -1269,10 +1369,6 @@
 				"Answer\\assets\\script\\wx\\jweixin-1.2.0.js"
 			],
 			[
-				"ccnode",
-				"engine\\cocos2d\\core\\CCNode.js"
-			],
-			[
 				"igameui",
 				"Answer\\assets\\script\\uiComponent\\GameUI.js"
 			],
@@ -1295,74 +1391,6 @@
 			[
 				"html",
 				"cocos2d\\kazmath\\simd_benchmark\\index.html"
-			],
-			[
-				"webgl-fun",
-				"webgl\\webgl-fundamentals.html"
-			],
-			[
-				"screenhelper",
-				"src\\global\\ScreenHelper.js"
-			],
-			[
-				"helper",
-				"src\\global\\helper.js"
-			],
-			[
-				"names",
-				"src\\global\\namespace.js"
-			],
-			[
-				"gamelobbyfa",
-				"src\\gameLobby\\GameLobbyFacade.js"
-			],
-			[
-				"ipconf",
-				"src\\global\\ipconfig.js"
-			],
-			[
-				"tableproxy",
-				"src\\land\\model\\remoteProxy\\TableProxy.js"
-			],
-			[
-				"landgameuimedia",
-				"src\\land\\view\\mediator\\GameUIMediator.js"
-			],
-			[
-				"datat",
-				"src\\global\\net\\GlobalDef\\DataTypes.js"
-			],
-			[
-				"puremv",
-				"lib\\puremvc-1.0.1.js"
-			],
-			[
-				"gameuimedia",
-				"src\\fish\\view\\mediator\\GameUIMediator.js"
-			],
-			[
-				"help",
-				"src\\global\\helper.js"
-			],
-			[
-				"cclay",
-				"frameworks\\cocos2d-html5\\cocos2d\\core\\layers\\CCLayer.js"
-			],
-			[
-				"ccsp",
-				"frameworks\\cocos2d-html5\\cocos2d\\core\\sprites\\CCSprite.js"
-			],
-			[
-				"ipco",
-				"src\\global\\ipconfig.js"
-			],
-			[
-				"cmd_f",
-				"src\\fish\\msgDef\\CMD_Fish.js"
-			],
-			[
-				"rankuime",
-				"src\\fish\\view\\mediator\\RankUIMediator.js"
 			]
 		],
 		"width": 0.0
@@ -1396,7 +1424,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 386.0,
+	"side_bar_width": 250.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

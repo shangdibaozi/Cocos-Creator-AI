@@ -1,7 +1,8 @@
-var State = require('State');
-var location_type = require('Locations').location_type;
-var GetNameOfEntity = require('EntityNames').GetNameOfEntity;
-var Miner = require('Miner');
+var State = require('s1State');
+var location_type = require('s1Locations').location_type;
+var GetNameOfEntity = require('s1EntityNames').GetNameOfEntity;
+var Miner = require('s1Miner');
+var constVal = require('s1Constants');
 /**
  * In this state the miner will walk to a goldmine and pick up a nugget
  * of gold. If the miner already has a nugget of gold he'll change state
@@ -39,6 +40,7 @@ var EnterMineAndDigForNugget = cc.Class({
 		pMiner.IncreaseFatigue();
 		pMiner.updateTip(GetNameOfEntity(pMiner.ID()) + " : " + "Pickin' up a nugget");
 
+		// is enough gold minded, go and put it in the bank
 		if(pMiner.PocketsFull()) {
 			pMiner.ChangeState(VisitBankAndDepositGold.Instance());
 		}
@@ -85,13 +87,13 @@ var VisitBankAndDepositGold = cc.Class({
 		pMiner.AddToWealth(pMiner.GoldCarried());
 		pMiner.SetGoldCarried(0);
 
-		pMiner.updateTip(GetNameOfEntity(pMiner.ID()) + " : " + "Depositing gold. Total savings now:" << pMiner.Wealth());
+		pMiner.updateTip(GetNameOfEntity(pMiner.ID()) + " : " + "Depositing gold. Total savings now:" + pMiner.Wealth());
 
 		// wealthy enough to have a well earned rest?
-		if(pMiner.Wealth() >= Miner.ComfortLevel) {
+		if(pMiner.Wealth() >= constVal.ComfortLevel) {
 			pMiner.updateTip(GetNameOfEntity(pMiner.ID()) + " : " + "WooHoo! Rich enough for now. Back home to mah li'lle lady");
 			pMiner.ChangeState(GoHomeAndSleepTilRested.Instance());
-		} else {
+		} else { // otherwise get more gold
 			pMiner.ChangeState(EnterMineAndDigForNugget.Instance());
 		}
 
@@ -132,6 +134,7 @@ var GoHomeAndSleepTilRested = cc.Class({
 			pMiner.updateTip(GetNameOfEntity(pMiner.ID()) + " : " + "What a God darn fantastic nap! Time to find more gold");
 			pMiner.ChangeState(EnterMineAndDigForNugget.Instance());
 		} else {
+			// sleep
 			pMiner.DecreaseFatigue();
 			pMiner.updateTip(GetNameOfEntity(pMiner.ID()) + " : " + "ZZZZ... ");
 		}

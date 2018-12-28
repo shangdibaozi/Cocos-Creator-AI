@@ -1,8 +1,8 @@
-var State = require('State');
-var BaseGameEntity = require('BaseGameEntity');
-var location_type = require('Locations').location_type;
-var MinerStates = require('MinerOwnedStates');
-var constVal = require('Constants');
+var State = require('s1State');
+var BaseGameEntity = require('s1BaseGameEntity');
+var location_type = require('s1Locations').location_type;
+var MinerStates = require('s1MinerOwnedStates');
+var constVal = require('s1Constants');
 
 cc.Class({
 	extends : BaseGameEntity,
@@ -134,6 +134,8 @@ cc.Class({
 	},
 
 	updateTip : function(msg) {
-		this.tip.string = msg;
+		cc.log(msg);
+		this.tip.string += msg + '\n';
 	}
 });
+

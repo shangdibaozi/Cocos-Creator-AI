@@ -1,18 +1,9 @@
 
 var BaseGameEntity = cc.Class({
-	name : 'BaseGameEntity',
 	extends : cc.Component,
-	properties : {
-		m_ID : {
-			default : 0,
-			type : cc.Integer,
-			tooltip : 'every entity must have a unique identifying number',
-			readonly : true
-		}
-	},
 
 	ctor : function() {
-		
+		this.m_ID = 0;
 	},
 
 	init : function(val) {

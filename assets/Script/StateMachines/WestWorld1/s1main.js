@@ -1,6 +1,6 @@
-var location_type = require('Locations').location_type;
-var Miner = require('Miner').Miner;
-var EntityType = require('EntityNames').EntityType;
+var location_type = require('s1Locations').location_type;
+var Miner = require('s1Miner').Miner;
+var EntityType = require('s1EntityNames').EntityType;
 
 cc.Class({
 	extends : cc.Component,
@@ -13,7 +13,7 @@ cc.Class({
 	},
 
 	onLoad : function() {
-		var miner = this.minerNode.getComponent('Miner');
+		var miner = this.minerNode.getComponent('s1Miner');
 		miner.init(EntityType.ent_Miner_Bob);
 		this.schedule(function() {
 			miner.Update();
