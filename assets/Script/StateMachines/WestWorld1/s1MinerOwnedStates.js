@@ -141,7 +141,7 @@ var GoHomeAndSleepTilRested = cc.Class({
 	},
 
 	Exit : function(pMiner) {
-		pMiner.updateTip(GetNameOfEntity(pMiner.ID()) + " : " << "Leaving the hourse");
+		pMiner.updateTip(GetNameOfEntity(pMiner.ID()) + " : " + "Leaving the hourse");
 	}
 });
 

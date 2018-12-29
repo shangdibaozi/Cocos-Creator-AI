@@ -525,8 +525,10 @@
 	},
 	"file_history":
 	[
-		"/D/CocosCreator2/resources/engine/extensions/spine/skeleton-data.js",
+		"/D/CocosCreator2/resources/engine/extensions/spine/spine-assembler.js",
 		"/D/CocosCreator2/resources/engine/bin/cocos2d-js-for-preview.js",
+		"/C/Users/10948/Downloads/daji/daji.json",
+		"/D/CocosCreator2/resources/engine/extensions/spine/skeleton-data.js",
 		"/G/cocoscreator/SpineTest/build/web-mobile/cocos2d-js.js",
 		"/G/cocoscreator/SpineTest/build/web-mobile/cocos2d-js-min.js",
 		"/E/game/sanguoH5/build/web-mobile/src/project.dev.0e645.js",
@@ -650,13 +652,11 @@
 		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/ui/ShopUI.js",
 		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/GlobalDef/GlobalFrame.js",
 		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/MessageDef/CMD_Land.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/MessageDef/CMD_ProtocolBase.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/AnnounceUIMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/mediator/DirectorMediator.js"
+		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/MessageDef/CMD_ProtocolBase.js"
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -671,6 +671,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"msgNode",
+			"cc.Color.RED",
+			"tip",
 			"_renderData",
 			"appendQuad",
 			"_lineBreakWithoutSpaces",
@@ -795,10 +798,7 @@
 			"Logon",
 			"logon",
 			"this.",
-			"tagGameServer",
-			"this.",
-			",",
-			"tagTableStatus"
+			"tagGameServer"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -881,6 +881,18 @@
 		"selected_items":
 		[
 			[
+				"spine-ass",
+				"engine\\extensions\\spine\\spine-assembler.js"
+			],
+			[
+				"spine",
+				"engine\\extensions\\spine\\lib\\spine.js"
+			],
+			[
+				"spi",
+				"engine\\extensions\\spine\\spine-assembler.js"
+			],
+			[
 				"base-node",
 				"engine\\cocos2d\\core\\utils\\base-node.js"
 			],
@@ -891,10 +903,6 @@
 			[
 				"ccomp",
 				"engine\\cocos2d\\core\\components\\CCComponent.js"
-			],
-			[
-				"spine",
-				"engine\\extensions\\spine\\spine-assembler.js"
 			],
 			[
 				"cclabel",
@@ -1383,14 +1391,6 @@
 			[
 				"cclable",
 				"engine\\cocos2d\\core\\components\\CCLabel.js"
-			],
-			[
-				"av",
-				"Answer\\assets\\script\\avatar\\Avatar.js"
-			],
-			[
-				"html",
-				"cocos2d\\kazmath\\simd_benchmark\\index.html"
 			]
 		],
 		"width": 0.0

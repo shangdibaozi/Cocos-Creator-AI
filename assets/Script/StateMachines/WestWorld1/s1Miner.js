@@ -3,15 +3,13 @@ var BaseGameEntity = require('s1BaseGameEntity');
 var location_type = require('s1Locations').location_type;
 var MinerStates = require('s1MinerOwnedStates');
 var constVal = require('s1Constants');
+var Message = require('Message');
 
 cc.Class({
 	extends : BaseGameEntity,
 
 	properties : {
-		tip : {
-			default : null,
-			type : cc.Label
-		}
+		msgMgr : Message,
 	},
 
 	/**
@@ -135,7 +133,7 @@ cc.Class({
 
 	updateTip : function(msg) {
 		cc.log(msg);
-		this.tip.string += msg + '\n';
+		this.msgMgr.addMsg(msg, cc.Color.RED);
 	}
 });
 
