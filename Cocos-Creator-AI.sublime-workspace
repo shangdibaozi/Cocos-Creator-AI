@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Thirst",
+				"ThirstLevel〔variable〕"
+			],
+			[
 				"a",
 				"active"
 			],
@@ -525,28 +529,56 @@
 	},
 	"file_history":
 	[
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/utils/label/ttf.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/components/CCScrollView.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/render-flow.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/webgl/render-component-walker.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/components/CCRenderComponent.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/webgl/assemblers/sprite/simple.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/utils/dynamic-atlas/manager.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/utils/dynamic-atlas/atlas.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/assets/CCRenderTexture.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/assets/CCTexture2D.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/components/CCSprite.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/render-engine.js",
+		"/E/github/Cocos-Creator-AI/Cocos-Creator-AI.sublime-project",
 		"/D/CocosCreator2/resources/engine/extensions/spine/spine-assembler.js",
+		"/D/CocosCreator2/resources/engine/extensions/spine/index.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/canvas/renderers/sprite/simple.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/webgl/assemblers/label/bmfont.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/webgl/assemblers/assembler.js",
+		"/F/githubdesktop/engine-1/extensions/spine/spine-assembler.js",
+		"/F/githubdesktop/engine-1/extensions/spine/track-entry-listeners.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/utils/find.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorldWithWoman/s2BaseGameEntity.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorld1/s1BaseGameEntity.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorldWithWoman/s2Locations.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorldWithWoman/s2StateMachine.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/UI/Message.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/components/CCLabel.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorldWithWoman/s2State.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorldWithWoman/s2EntityNames.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorld1/s1EntityNames.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorld1/s1Miner.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/components/CCComponent.js",
+		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorld1/s1MinerOwnedStates.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/CCNode.js",
+		"/D/CocosCreator2/resources/engine/cocos2d/core/utils/text-utils.js",
 		"/D/CocosCreator2/resources/engine/bin/cocos2d-js-for-preview.js",
 		"/C/Users/10948/Downloads/daji/daji.json",
 		"/D/CocosCreator2/resources/engine/extensions/spine/skeleton-data.js",
 		"/G/cocoscreator/SpineTest/build/web-mobile/cocos2d-js.js",
 		"/G/cocoscreator/SpineTest/build/web-mobile/cocos2d-js-min.js",
 		"/E/game/sanguoH5/build/web-mobile/src/project.dev.0e645.js",
-		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/render-engine.js",
 		"/D/CocosCreator2/resources/engine/cocos2d/core/value-types/mat4.js",
 		"/D/CocosCreator/resources/engine/cocos2d/core/components/CCComponent.js",
-		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorld1/s1MinerOwnedStates.js",
-		"/D/CocosCreator2/resources/engine/cocos2d/core/CCNode.js",
 		"/D/CocosCreator/resources/engine/cocos2d/shaders/CCShaders.js",
-		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/render-flow.js",
 		"/E/game/sanguoH5/build/web-mobile/src/project.dev.78d5b.js",
 		"/D/CocosCreator2/resources/engine/cocos2d/core/renderer/render-engine.canvas.js",
-		"/E/github/Cocos-Creator-AI/Cocos-Creator-AI.sublime-project",
 		"/E/github/Cocos-Creator-AI/assets/Script/WestWorld1/Miner.js",
 		"/E/github/Cocos-Creator-AI/assets/Script/WestWorld1/Constants.js",
 		"/E/github/Cocos-Creator-AI/assets/Script/WestWorld1/State.js",
 		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorld1/s1main.js",
-		"/E/github/Cocos-Creator-AI/assets/Script/StateMachines/WestWorld1/s1Miner.js",
 		"/E/github/Cocos-Creator-AI/assets/Script/WestWorld1/main.js",
 		"/C/Users/10948/Desktop/LandGameUIMediator - 副本.js",
 		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/model/proxy/LandTableCardDataProxy.js",
@@ -624,39 +656,11 @@
 		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/view/ui/LandGameResultUI.js",
 		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/view/ui/LandLogonUI.js",
 		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/view/mediator/LandDirectorMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/view/mediator/LandLogonUIMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/view/mediator/LandGameResultUIMediator.js",
-		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/controller/command/LandQuitGameCommand.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/Protocol.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/lib/Encrypt.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/plugins/KBEngine.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/MessageDef/CMD_Game.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/ui/LoginUI.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/NetConstants.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/GlobalDef/GlobalDef.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/model/remoteProxy/RoomProxy.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/MessageDef/CMD_Plaza.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/model/remoteProxy/LoginLobbyProxy.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/controller/command/PrepModelCommand.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/proxy/KBEngineProxy.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/InitFacade.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/GameLobbyFacade.js",
-		"/G/ddd/plugin/KBEngine.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/Constants.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/ui/GameLobbyScene.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/ui/GameLobbyUI.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/ui/LoadingUI.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/ui/LogonUI.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/ui/MsgUI.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/ui/RankUI.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/gameLobby/view/ui/ShopUI.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/GlobalDef/GlobalFrame.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/MessageDef/CMD_Land.js",
-		"/E/game/Html5Game/Client_CocosCreator/GameLobby/assets/scripts/global/net/MessageDef/CMD_ProtocolBase.js"
+		"/E/game/Html5Game/Client_CocosCreator/Land/assets/Script/view/mediator/LandLogonUIMediator.js"
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -671,6 +675,88 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			" : -1,",
+			":",
+			"DoHouseWord",
+			"SetCurrentState",
+			"_getFontDesc",
+			"_isBold",
+			"ttfUtls",
+			"_isBold",
+			"_enableBold",
+			"_isBold",
+			"_assembler",
+			"_assemblerData",
+			"_isBold",
+			"Math.sin",
+			"Math",
+			"RandInt",
+			"sallon",
+			"EnterMineAndDigForNugget",
+			"EntermineAndDigForNugget",
+			"EnterMineAndDigForNugget",
+			"blendEquationSeparate",
+			"BLEND_ONE_MINUS_SRC_ALPHA",
+			"_blendAlphaEq",
+			"_blendEq",
+			"BLEND_FUNC_ADD",
+			"CULL_NONE",
+			"_updateMaterial",
+			"_material",
+			"material",
+			"_flush",
+			"_render",
+			"RENDER",
+			"UPDATE_RENDER_DATA",
+			"_updateRenderData",
+			"updateRenderData",
+			"_setSubImage",
+			"updateSubImage",
+			"RenderTexture",
+			"insertSpriteFrame",
+			"updateRenderData",
+			"flows",
+			"getFlow",
+			"createFlow",
+			"destroyRenderData",
+			"_uniforms",
+			"_type2uniformCommit",
+			"_uniforms",
+			"_type2uniformArrayCommit",
+			"uniformMatrix4fv",
+			"uniformMatrix",
+			"mat4",
+			"math",
+			"mathPools",
+			"ONE_DEGREE",
+			"WORLD_TRANSFORM",
+			"_flushIA",
+			"emit",
+			"not yet implement deferred properties for ES6 Classes",
+			"CCClass(options)",
+			"function CCClass(options)",
+			"_dataPool",
+			"_eventMask",
+			"SIZE_CHANGED",
+			"_updateFontFamly",
+			"updateRenderData",
+			"EventType",
+			"SIZE_CHANGED",
+			"_calculateSplitedStrings",
+			"_updateLabelDimensions",
+			"_updateRenderData",
+			"updateRenderData",
+			"_calculateSplitedStrings",
+			"lateUpdate",
+			"_calculateSplitedStrings",
+			"_splitedStrings",
+			"_updateLabelDimensions",
+			"paragraphedStrings",
+			"RESIZE_HEIGHT",
+			"_updateRenderData",
+			"markForRender",
+			"_updateRenderData",
+			"msgMgr",
 			"msgNode",
 			"cc.Color.RED",
 			"tip",
@@ -716,89 +802,7 @@
 			"_readAttachmentData",
 			"updateRenderData",
 			"_renderDatas",
-			"genRenderDatas",
-			"updateRenderData",
-			"genRenderDatas",
-			"dataLength",
-			"alloc",
-			"requestRenderData",
-			"defaultAnimation",
-			"_renderDatas",
-			"_readAttachmentData",
-			"Pool",
-			"_indices",
-			"indices",
-			"_indices",
-			"indices",
-			"_indices",
-			"RenderData",
-			"_readAttachmentData",
-			"genRenderDatas",
-			"_readAttachmentData",
-			"trackEntryPool",
-			"instantiator",
-			"setAnimationStateData",
-			"_state",
-			"setAnimation",
-			"function Pool",
-			"Pool",
-			"hasLoadedSkeletonData",
-			"loadSkelonData",
-			"obtain",
-			"_skeleton",
-			"_rootBone",
-			"_updateSkeletonData",
-			"setSkeletonData",
-			"_updateSkeletonData",
-			"skeletonMap",
-			"loadSkelonData",
-			"skeletonMap",
-			"skeletonData",
-			"multiply",
-			"BaseRenderData",
-			"RenderData",
-			"function RenderData()",
-			"GoHomeAndSleepTilRested",
-			"chair_id",
-			"uncall_tip_img_1",
-			"landScore",
-			"readStringGBK",
-			"removeCard",
-			"recodeUserCardOuted",
-			"outcard",
-			"_errorTable",
-			"loginError",
-			"SUB_GP_LOGON_ERROR",
-			"SUB_GP_REGISTER_ACCOUNTS",
-			"US_SIT",
-			"sendUserReady",
-			"this.facade.sendNotification(LandConstants.QUICK_START)",
-			"QUICK_START",
-			"userSit",
-			"UserSit",
-			"userSit",
-			"this.app",
-			"getPassword",
-			"LandConstants",
-			"writeString",
-			"write2bundle",
-			"SUB_GP_LOGON_ACCOUNTS",
-			"SUB_GP_LOGON_USERID",
-			"_globalUnitProxy",
-			"_globalUnitsProxy",
-			"32",
-			"PASS_LEN",
-			"NAME_LEN",
-			"Protocol",
-			"_errorTable",
-			"LandLoginUIMediator",
-			"GameLobbyLoginCommand",
-			"LandQuickStartCommand",
-			"logon",
-			"Logon",
-			"logon",
-			"this.",
-			"tagGameServer"
+			"genRenderDatas"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -815,7 +819,7 @@
 	},
 	"incremental_find":
 	{
-		"height": 28.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -858,7 +862,7 @@
 	},
 	"output.exec":
 	{
-		"height": 126.0
+		"height": 327.0
 	},
 	"output.find_results":
 	{
@@ -871,7 +875,7 @@
 	"pinned_build_system": "",
 	"replace":
 	{
-		"height": 52.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -880,6 +884,106 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"cclab",
+				"engine\\cocos2d\\core\\components\\CCLabel.js"
+			],
+			[
+				"ccrendercom",
+				"engine\\cocos2d\\core\\components\\CCRenderComponent.js"
+			],
+			[
+				"ccwe",
+				"engine\\cocos2d\\core\\physics\\joint\\CCWeldJoint.js"
+			],
+			[
+				"box2d",
+				"engine\\cocos2d\\core\\physics\\box2d-adapter.js"
+			],
+			[
+				"ccscrollview",
+				"engine\\cocos2d\\core\\components\\CCScrollView.js"
+			],
+			[
+				"reder-flo",
+				"engine\\cocos2d\\core\\renderer\\render-flow.js"
+			],
+			[
+				"spine-assembler",
+				"engine\\extensions\\spine\\spine-assembler.js"
+			],
+			[
+				"texture2d",
+				"engine\\cocos2d\\core\\assets\\CCTexture2D.js"
+			],
+			[
+				"rendertex",
+				"engine\\cocos2d\\core\\assets\\CCRenderTexture.js"
+			],
+			[
+				"atla",
+				"engine\\cocos2d\\core\\renderer\\utils\\dynamic-atlas\\atlas.js"
+			],
+			[
+				"manager",
+				"engine\\cocos2d\\core\\renderer\\utils\\dynamic-atlas\\manager.js"
+			],
+			[
+				"simple",
+				"engine\\cocos2d\\core\\renderer\\webgl\\assemblers\\sprite\\simple.js"
+			],
+			[
+				"render",
+				"engine\\cocos2d\\core\\renderer\\render-engine.js"
+			],
+			[
+				"sprite",
+				"engine\\cocos2d\\core\\renderer\\canvas\\renderers\\sprite\\simple.js"
+			],
+			[
+				"wa",
+				"engine\\cocos2d\\core\\renderer\\webgl\\assemblers\\assembler.js"
+			],
+			[
+				"render-flo",
+				"engine\\cocos2d\\core\\renderer\\render-flow.js"
+			],
+			[
+				"ccscrollv",
+				"engine\\cocos2d\\core\\components\\CCScrollView.js"
+			],
+			[
+				"spine-a",
+				"engine\\extensions\\spine\\spine-assembler.js"
+			],
+			[
+				"math-p",
+				"engine\\cocos2d\\core\\utils\\math-pools.js"
+			],
+			[
+				"render-wa",
+				"engine\\cocos2d\\core\\renderer\\webgl\\render-component-walker.js"
+			],
+			[
+				"find",
+				"engine\\cocos2d\\core\\utils\\find.js"
+			],
+			[
+				"eventtarge",
+				"engine\\cocos2d\\core\\event\\event-target.js"
+			],
+			[
+				"renderen",
+				"engine\\cocos2d\\core\\renderer\\render-engine.js"
+			],
+			[
+				"ccomp",
+				"engine\\cocos2d\\core\\components\\CCComponent.js"
+			],
+			[
+				"cclabel",
+				"engine\\cocos2d\\core\\components\\CCLabel.js"
+			],
 			[
 				"spine-ass",
 				"engine\\extensions\\spine\\spine-assembler.js"
@@ -899,14 +1003,6 @@
 			[
 				"ccnode",
 				"engine\\cocos2d\\core\\CCNode.js"
-			],
-			[
-				"ccomp",
-				"engine\\cocos2d\\core\\components\\CCComponent.js"
-			],
-			[
-				"cclabel",
-				"engine\\cocos2d\\core\\components\\CCLabel.js"
 			],
 			[
 				"skeleto",
@@ -945,16 +1041,8 @@
 				"engine\\polyfill\\object.js"
 			],
 			[
-				"render-flo",
-				"engine\\cocos2d\\core\\renderer\\render-flow.js"
-			],
-			[
 				"mat4",
 				"engine\\cocos2d\\core\\value-types\\mat4.js"
-			],
-			[
-				"render",
-				"engine\\cocos2d\\core\\renderer\\RendererWebGL.js"
 			],
 			[
 				"shader",
@@ -1307,90 +1395,6 @@
 			[
 				"clippingnode",
 				"engine\\cocos2d\\clipping-nodes\\CCClippingNode.js"
-			],
-			[
-				"ccsgno",
-				"engine\\cocos2d\\core\\base-nodes\\CCSGNode.js"
-			],
-			[
-				"node",
-				"engine\\cocos2d\\clipping-nodes\\CCClippingNode.js"
-			],
-			[
-				"ccscrollvi",
-				"engine\\cocos2d\\core\\components\\CCScrollView.js"
-			],
-			[
-				"ccassert",
-				"engine\\cocos2d\\core\\platform\\CCAssetLibrary.js"
-			],
-			[
-				"utils",
-				"engine\\cocos2d\\core\\platform\\utils.js"
-			],
-			[
-				"igame",
-				"Answer\\assets\\script\\avatar\\iGame.js"
-			],
-			[
-				"imail",
-				"Answer\\assets\\script\\avatar\\iMail.js"
-			],
-			[
-				"mai",
-				"Answer\\assets\\script\\MainScene.js"
-			],
-			[
-				"irank",
-				"Answer\\assets\\script\\uiComponent\\RankUI.js"
-			],
-			[
-				"gameen",
-				"Answer\\assets\\script\\uiComponent\\GameEndUI.js"
-			],
-			[
-				"practicegameen",
-				"Answer\\assets\\script\\uiComponent\\PracticeGameEndUI.js"
-			],
-			[
-				"game.js",
-				"Answer\\assets\\script\\Game.js"
-			],
-			[
-				"practic",
-				"Answer\\assets\\script\\uiComponent\\PracticeMainUI.js"
-			],
-			[
-				"ipra",
-				"Answer\\assets\\script\\avatar\\iPracticeGame.js"
-			],
-			[
-				"main",
-				"Answer\\assets\\script\\MainScene.js"
-			],
-			[
-				"_cc",
-				"engine\\cocos2d\\core\\platform\\_CCClass.js"
-			],
-			[
-				"wex",
-				"Answer\\assets\\script\\wx\\jweixin-1.2.0.js"
-			],
-			[
-				"igameui",
-				"Answer\\assets\\script\\uiComponent\\GameUI.js"
-			],
-			[
-				"_ccl",
-				"engine\\cocos2d\\core\\platform\\_CCClass.js"
-			],
-			[
-				"ccglpro",
-				"engine\\cocos2d\\shaders\\CCGLProgram.js"
-			],
-			[
-				"cclable",
-				"engine\\cocos2d\\core\\components\\CCLabel.js"
 			]
 		],
 		"width": 0.0
@@ -1424,7 +1428,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 250.0,
+	"side_bar_width": 289.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

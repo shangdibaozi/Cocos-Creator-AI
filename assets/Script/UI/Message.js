@@ -18,7 +18,9 @@ cc.Class({
         this.msgNodes.push(msgNode);
         msgNode.parent = this.scrollView.content;
 
-        msgNode.on('size-changed', this.updateContent, this);
+        // msgNode.on('size-changed', this.updateContent, this);
+        msgNode.getComponent(cc.Label)._updateRenderData(true); // 手动让label计算大小
+        this.updateContent();
     },
 
     updateContent() {
