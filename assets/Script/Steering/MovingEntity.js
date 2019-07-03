@@ -4,13 +4,13 @@ cc.Class({
     extends: BaseGameEntity,
 
     properties: {
-        m_vVelocity : null,
-        m_vHeading : null, // 朝向
-        m_vSide : cc.v2(0, 0),     // 和朝向垂直的向量
-        m_dMass : null,     // 质量
-        m_dMaxSpeed : null, // 最大速度
-        m_dMaxForce : null, // 最大力
-        m_dMaxTurnRate : null // 
+        m_vVelocity : cc.v2(0, 0),
+        m_vHeading : cc.v2(0, 0), // 朝向
+        m_vSide : cc.v2(0, 0),     // 归一化了的向量，垂直于实体的朝向
+        m_dMass : 0.0,     // 质量
+        m_dMaxSpeed : 0.0, // 实体所能达到的最大速度
+        m_dMaxForce : 0.0, // 实体能产生的最大动力
+        m_dMaxTurnRate : 0.0 // 最大角速度
     },
 
     Velocity() {
@@ -69,7 +69,7 @@ cc.Class({
     },
 
     /**
-     * 按照一定值选择朝向到target
+     * 按照一定值旋转朝向到target
      */
     RotateHeadingToFacePosition(target) {
         let toTarget = target.sub(this.m_vPos).normalize();

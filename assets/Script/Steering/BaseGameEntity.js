@@ -13,7 +13,7 @@ cc.Class({
     },
 
     SetPos(new_pos) {
-        m_vPos = new_pos;
+        this.m_vPos = new_pos;
     },
 
     BRadius() {
