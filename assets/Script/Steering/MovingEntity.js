@@ -10,7 +10,7 @@ cc.Class({
         m_dMass : 0.0,     // 质量
         m_dMaxSpeed : 0.0, // 实体所能达到的最大速度
         m_dMaxForce : 0.0, // 实体能产生的最大动力
-        m_dMaxTurnRate : 0.0 // 最大角速度
+        m_dMaxTurnRate : 0.0 // 最大旋转角度
     },
 
     Velocity() {
@@ -79,6 +79,7 @@ cc.Class({
             return true;
         }
 
+        // 旋转角不超过可旋转的最大角度
         if(angle > this.m_dMaxTurnRate) {
             angle = this.m_dMaxTurnRate;
         }
