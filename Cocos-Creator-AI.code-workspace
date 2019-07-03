@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "C:\\Program Files\\CocosCreator2\\resources\\engine"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"*.min.js": true,
+			"packages": true,
+			"settings" : true,
+			".vscode" : true,
+			"build" : true,
+			".circleci" : true,
+			"bin" : true,
+			"docs" : true,
+			"editor" : true,
+			"licenses" : true,
+			"polyfill" : false,
+			"test" : true,
+			"**/*.min.js" : true,
+			".editorconfig" : true,
+			".eslintrc.json" : true,
+			"**/*.TXT" : true,
+			"**/*.txt" : true,
+		}
+	},
+}
