@@ -8,6 +8,11 @@ cc.Class({
         m_dBoundingRadius : null
     },
 
+    init(pos, r) {
+        this.m_vPos = pos;
+        this.m_dBoundingRadius = r;
+    },
+
     Pos() {
         return this.m_vPos;
     },

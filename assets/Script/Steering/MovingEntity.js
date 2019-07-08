@@ -13,6 +13,19 @@ cc.Class({
         m_dMaxTurnRate : 0.0 // 最大旋转角度
     },
 
+    init(position, radius, velocity, max_speed, heading, mass, scale, turn_rate, max_force) {
+        this._super(position, radius);
+        this.m_vHeading = heading;
+        this.m_vVelocity = velocity;
+        this.m_dMass = mass;
+        this.m_vSide.x = -this.m_vHeading.y;
+        this.m_vSide.y = this.m_vHeading.x;
+        this.m_dMaxSpeed = max_speed;
+        this.m_dMaxTurnRate = turn_rate;
+        this.m_dMaxForce = max_force;
+        this.m_vScale = scale;
+    },
+
     Velocity() {
         return this.m_vVelocity;
     },

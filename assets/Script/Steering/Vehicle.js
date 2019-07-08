@@ -1,16 +1,41 @@
-let MovingEntity = require('./MovingEntity');
+import MovingEntity from './MovingEntity';
+import SteeringBehaviors from './SteeringBehaviors';
 
 cc.Class({
     extends : MovingEntity,
 
     properties : {
         m_pWorld : null,
-        m_pSterring : null,
+        m_pSteering : null,
         m_pHeadingSmoother : null,
         m_vSmoothedHeading : null,
         m_bSmoothingOn : false,
         m_dTimeElapsed : 0,
         m_vecVehicleVB : null,
+    },
+
+    init(world, position, rotation, velocity, mass, max_force, max_speed, max_turn_rate, scale) {
+        this._super(position, scale, velocity, max_speed, cc.v2(Math.sin(rotation), -Math.cos(rotation)), mass, cc.v2(scale, scale), max_turn_rate, max_force);
+        this.m_pWorld = world;
+        this.m_vSmoothedHeading = cc.v2(0, 0);
+        this.m_bSmoothingOn = false;
+        this.m_dTimeElapsed = 0.0;
+
+        this.InitializeBuffer();
+
+        this.m_pSteering = new SteeringBehaviors(this);
+    },
+
+    InitializeBuffer() {
+        const NumVehicleVerts = 3;
+        let vehicle = [
+            cc.v2(-1.0, 0.6),
+            cc.v2(1.0, 0.0),
+            cc.v2(-1.0, -0.6)
+        ];
+        for(let vtx = 0; vtx < NumVehicleVerts; vtx++) {
+            this.m_vecVehicleVB.push(vehicle[vtx]);
+        }
     },
 
     Update(time_elapsed) {
