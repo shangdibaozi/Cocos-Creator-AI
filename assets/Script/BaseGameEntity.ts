@@ -17,8 +17,8 @@ export default class BaseGameEntity extends cc.Component {
     private m_bTag : boolean = false;
 
     // its location in the environment
-    protected m_vPos : Vector2D = null;
-    protected m_vScale : Vector2D = null;
+    protected m_vPos : Vector2D = new Vector2D();
+    protected m_vScale : Vector2D = new Vector2D();
     // the length of this object's bouding radius
     protected m_dBoudingRadius : number = 0.0;
 
@@ -48,6 +48,8 @@ export default class BaseGameEntity extends cc.Component {
     SetPos(new_pos : Vector2D) {
         this.m_vPos.x = new_pos.x;
         this.m_vPos.y = new_pos.y;
+        this.node.x = new_pos.x;
+        this.node.y = new_pos.y;
     }
 
     BRadius() {

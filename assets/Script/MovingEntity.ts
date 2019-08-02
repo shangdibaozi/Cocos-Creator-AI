@@ -5,11 +5,11 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class MovingEnity extends BaseGameEntity {
 
-    protected m_vVelocity : Vector2D = null;
+    protected m_vVelocity : Vector2D = new Vector2D();
     // a normalized vector pointing in the direction the entity is heading
-    protected m_vHeading : Vector2D = null;
+    protected m_vHeading : Vector2D = new Vector2D();
     // a vector perpendicular to the heading vector
-    protected m_vSide : Vector2D = null;
+    protected m_vSide : Vector2D = new Vector2D();
 
     protected m_dMass : number = 0;
     // the maximum speed this entity may travel at.
@@ -21,8 +21,13 @@ export default class MovingEnity extends BaseGameEntity {
 
 
     public initMovingEntity(position : Vector2D, radius : number, velocity : Vector2D, max_speed : number, heading : Vector2D, mass : number, scale : Vector2D, turn_rate : number, max_force : number) : void {
-        super.initBaseGameEntity(0, position, radius);
+        this.initBaseGameEntity(0, position, radius);
+        this.m_dMaxSpeed = max_speed;
+        this.m_vHeading.Assignment(heading);
+        this.m_dMass = mass;
         this.m_vScale.Assignment(scale);
+        this.m_dMaxTurnRate = turn_rate;
+        this.m_dMaxForce = max_force;
     }
 
     public Velocity() : Vector2D { 

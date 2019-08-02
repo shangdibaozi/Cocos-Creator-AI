@@ -14,37 +14,61 @@ export default class Vehicle extends MovingEnity {
     private m_pSteering : SteeringBehavior = null;
 
     // this vector represents the average of the vehicle's heading
-    private m_vSmoothedHeading : Vector2D = null;
+    private m_vSmoothedHeading : Vector2D = new Vector2D();
     // when true, smooting is active
     
     m_vecVehicleVB : Array<Vector2D>[] = [];
+
+    initVehicle(world : GameWorld, position : Vector2D, rotation : number, velocity : Vector2D, mass : number, max_force : number, max_speed : number, max_turn_rate : number, scale : number) {
+        this.initMovingEntity(position, scale, velocity, max_speed, new Vector2D(Math.sin(rotation), -Math.cos(rotation)), mass, new Vector2D(scale, scale), max_turn_rate, max_force);
+        this.m_pWorld = world;
+        this.m_pSteering = new SteeringBehavior(this);
+    }
 
     // updates the vehicle's position and orientation
     Update(time_elapsed : number) : void {
         // Keep a record of its old position so we can update its call later in this method
         let OldPos : Vector2D = this.Pos();
-        let SteeringForce : Vector2D = null;
         // calculate the combine force from each steering behavior in the vehicle's list
-        SteeringForce = this.m_pSteering.Calculate();
+        let SteeringForce : Vector2D = this.m_pSteering.Calculate();
 
-        // Acceleration = Force / Mass
+        // Acceleration = Force / Mass 加速度公式
         let acceleration : Vector2D = SteeringForce.Div(this.m_dMass);
 
         // update velocity
-        this.m_vVelocity.AddSelf(acceleration);
+        this.m_vVelocity.AddSelf(acceleration.MultSelf(time_elapsed));
 
         // make sure vehicle does not exceed maximum velocity
         this.m_vVelocity.Truncate(this.m_dMaxSpeed);
 
         // update the position
         this.m_vPos.AddSelf(this.m_vVelocity.Mult(time_elapsed));
-
+        
         // update the heading if the vehicle has a non zero velocity
         if(this.m_vVelocity.LengthSq() > 0.00000001) {
             this.m_vHeading.Assignment(Vector2D.Vec2DNormalize(this.m_vVelocity));
             this.m_vSide.Assignment(this.m_vHeading.Perp());
         }
 
+        this.UpdateNode();
+    }
 
+    public Steering() : SteeringBehavior {
+        return this.m_pSteering;
+    }
+
+    public World() : GameWorld {
+        return this.m_pWorld;
+    }
+
+    public SmoothedHeading() : Vector2D {
+        return this.m_vSmoothedHeading;
+    }
+
+    private UpdateNode() {
+        this.node.x = this.m_vPos.x;
+        this.node.y = this.m_vPos.y;
+
+        this.node.rotation = Math.atan2(this.m_vHeading.x, this.m_vHeading.y) * cc.macro.DEG;
     }
 }

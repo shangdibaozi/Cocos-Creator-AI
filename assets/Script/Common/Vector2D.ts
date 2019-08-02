@@ -7,9 +7,15 @@ export default class Vector2D {
     /**
      *
      */
-    constructor(x : number, y : number) {
-        this.x = x;
-        this.y = y;
+    constructor(x : number = 0, y : number = 0) {
+        this.x = x || 0;
+        this.y = y || 0;
+    }
+
+    public Zero() : Vector2D {
+        this.x = 0;
+        this.y = 0;
+        return this;
     }
 
     public static Vec2DNormalize(vec : Vector2D) : Vector2D {
@@ -18,9 +24,10 @@ export default class Vector2D {
     }
 
 
-    public Assignment(v : Vector2D) : void {
+    public Assignment(v : Vector2D) : Vector2D {
         this.x = v.x;
         this.y = v.y;
+        return this;
     }
 
     // returns the squared length of a 2D vector
@@ -78,6 +85,12 @@ export default class Vector2D {
         result.x *= val;
         result.y *= val;
         return result;
+    }
+
+    public MultSelf(val : number) : Vector2D {
+        this.x *= val;
+        this.y *= val;
+        return this;
     }
 
     public Dot(vec : Vector2D) : number {
