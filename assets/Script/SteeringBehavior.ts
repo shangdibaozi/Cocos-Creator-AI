@@ -28,6 +28,13 @@ export enum behavior_type {
     offset_pursuit = 0x10000,
 }
 
+// Arrive makes use of these to determine how quickly a vehicle should decelerate to its target
+enum Deceleration {
+    slow = 3,
+    normal = 2,
+    fast = 1
+}
+
 export default class SteeringBehavior {
 
     // a pointer to the owner of this instance
@@ -41,6 +48,8 @@ export default class SteeringBehavior {
 
     // binary flags to indicate whether or not a behavior should be active
     private m_iFlags : number = 0;
+
+    private m_Deceleration : Deceleration = null;
 
 
     // 
@@ -57,7 +66,8 @@ export default class SteeringBehavior {
         this.m_SummingMethod = summing_method.prioritized;
         this.m_dWeightSeek = Prm.SeekWeight;
         this.m_dWeightFlee = Prm.FleeWeight;
-
+        this.m_dWeightArrive = Prm.ArriveWeight;
+        this.m_Deceleration = Deceleration.normal;
     }
 
     public SeekOn() : void {
@@ -77,6 +87,16 @@ export default class SteeringBehavior {
     public FleeOff() : void {
         if(this.On(behavior_type.flee)) {
             this.m_iFlags ^= behavior_type.flee;
+        }
+    }
+
+    public ArriveOn() : void {
+        this.m_iFlags |= behavior_type.arrive;
+    }
+
+    public ArriveOff() : void {
+        if(this.On(behavior_type.arrive)) {
+            this.m_iFlags ^= behavior_type.arrive;
         }
     }
 
@@ -111,16 +131,24 @@ export default class SteeringBehavior {
     // accumulated to that point
     public CalculatePrioritized() : Vector2D {
         let force : Vector2D = null;
+        let crosshair : Vector2D = this.m_pVehicle.World().Crosshair();
 
         if(this.On(behavior_type.flee)) {
-            force = this.Flee(this.m_pVehicle.World().Crosshair()).MultSelf(this.m_dWeightFlee);
+            force = this.Flee(crosshair).MultSelf(this.m_dWeightFlee);
             if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
                 return this.m_vSteeringForce;
             }
         }
 
         if(this.On(behavior_type.seek)) {
-            force = this.Seek(this.m_pVehicle.World().Crosshair()).MultSelf(this.m_dWeightSeek);
+            force = this.Seek(crosshair).MultSelf(this.m_dWeightSeek);
+            if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
+                return this.m_vSteeringForce;
+            }
+        }
+
+        if(this.On(behavior_type.arrive)) {
+            force = this.Arrive(crosshair, this.m_Deceleration).MultSelf(this.m_dWeightArrive);
             if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
                 return this.m_vSteeringForce;
             }
@@ -174,5 +202,29 @@ export default class SteeringBehavior {
     private Flee(targetPos : Vector2D) : Vector2D {
         let desiredVelocity = Vector2D.Vec2DNormalize(this.m_pVehicle.Pos().Sub(targetPos)).MultSelf(this.m_pVehicle.MaxSpeed());
         return desiredVelocity.SubSelf(this.m_pVehicle.Velocity());
+    }
+
+    // this behavior is similar to seek but it attempts to arrive at the target position with a zero velocity
+    private Arrive(targetPos : Vector2D, deceleration : Deceleration) : Vector2D {
+        let toTarget : Vector2D = targetPos.Sub(this.m_pVehicle.Pos());
+        // calculate the distance to the target
+        let dist : number = toTarget.Length();
+
+        if(dist > 0) {
+            // because Deceleration is enumerated as an int, this value is required to provide fine tweaking of the deceleration.
+            let DecelerationTweaker = 0.3;
+            // calculate the speed required to reach the target given the desired deceleration
+            let speed = dist / (deceleration * DecelerationTweaker);
+            // make sure the velocity does not exceed the max
+            speed = Math.min(speed, this.m_pVehicle.MaxSpeed());
+
+            // from here proceed just like Seek except we don't need to normalize
+            // the toTarget vector because we have already gone to the trouble of
+            // calculating its length: dist.
+            let desiredVelocity : Vector2D = toTarget.MultSelf(speed / dist);
+            return desiredVelocity.SubSelf(this.m_pVehicle.Velocity());
+        }
+
+        return new Vector2D(0, 0);
     }
 }

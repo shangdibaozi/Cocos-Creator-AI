@@ -88,10 +88,18 @@ export default class Vector2D {
     }
 
     public Div(val : number) : Vector2D {
+        console.assert(val > 0, 'val is zero');
         let result : Vector2D = new Vector2D(this.x, this.y);
         result.x /= val;
         result.y /= val;
         return result;
+    }
+
+    public DivSelf(val : number) : Vector2D {
+        console.assert(val > 0, 'val is zero');
+        this.x /= val;
+        this.y /= val;
+        return this;
     }
 
     /**
