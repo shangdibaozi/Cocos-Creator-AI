@@ -34,13 +34,13 @@ export default class Vehicle extends MovingEnity {
 
         // Acceleration = Force / Mass 加速度公式
         let acceleration : Vector2D = SteeringForce.Div(this.m_dMass);
-
+        
         // update velocity
         this.m_vVelocity.AddSelf(acceleration.MultSelf(time_elapsed));
 
         // make sure vehicle does not exceed maximum velocity
         this.m_vVelocity.Truncate(this.m_dMaxSpeed);
-
+        
         // update the position
         this.m_vPos.AddSelf(this.m_vVelocity.Mult(time_elapsed));
         

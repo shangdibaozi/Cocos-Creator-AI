@@ -53,11 +53,25 @@ export default class Vector2D {
         return this;
     }
 
+    /**
+     * 向量相减，并返回一个新的向量
+     * @param vec 
+     */
     public Sub(vec : Vector2D) : Vector2D {
         let result : Vector2D = new Vector2D(this.x, this.y);
         result.x -= vec.x;
         result.y -= vec.y;
         return result;
+    }
+
+    /**
+     * 自身减去这个向量
+     * @param vec 
+     */
+    public SubSelf(vec : Vector2D) : Vector2D {
+        this.x -= vec.x;
+        this.y -= vec.y;
+        return this;
     }
 
     public Add(vec : Vector2D) : Vector2D {
@@ -80,6 +94,10 @@ export default class Vector2D {
         return result;
     }
 
+    /**
+     * 乘以一个数值，并返回一个新的Vector2D
+     * @param val 数值
+     */
     public Mult(val : number) : Vector2D {
         let result : Vector2D = new Vector2D(this.x, this.y);
         result.x *= val;
@@ -87,6 +105,10 @@ export default class Vector2D {
         return result;
     }
 
+    /**
+     * 自身缩放val倍
+     * @param val 数值
+     */
     public MultSelf(val : number) : Vector2D {
         this.x *= val;
         this.y *= val;
@@ -123,7 +145,7 @@ export default class Vector2D {
 
     public Truncate(max : number) : void {
         if(this.Length() > max) {
-            this.Normalize().Mult(max);
+            this.Normalize().MultSelf(max);
         }
     }
 }

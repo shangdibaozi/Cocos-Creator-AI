@@ -39,6 +39,7 @@ export default class BaseGameEntity extends cc.Component {
         this.m_vScale = new Vector2D(1.0, 1.0);
         this.m_EntityType = entityType || Entity_Type.default_entity_type;
         this.m_bTag = false;
+        this.m_vPos.Assignment(pos);
     }
 
     Pos() {
@@ -48,8 +49,6 @@ export default class BaseGameEntity extends cc.Component {
     SetPos(new_pos : Vector2D) {
         this.m_vPos.x = new_pos.x;
         this.m_vPos.y = new_pos.y;
-        this.node.x = new_pos.x;
-        this.node.y = new_pos.y;
     }
 
     BRadius() {

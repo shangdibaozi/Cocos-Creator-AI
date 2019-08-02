@@ -44,8 +44,9 @@ export default class SteeringBehavior {
 
 
     // 
-    m_dWeightArrive : number = 0;
-    m_dWeightSeek : number = 0;
+    private m_dWeightArrive : number = 0;
+    private m_dWeightSeek : number = 0;
+    private m_dWeightFlee : number = 0;
 
     /**
      *
@@ -55,6 +56,7 @@ export default class SteeringBehavior {
         this.m_iFlags = 0;
         this.m_SummingMethod = summing_method.prioritized;
         this.m_dWeightSeek = Prm.SeekWeight;
+        this.m_dWeightFlee = Prm.FleeWeight;
 
     }
 
@@ -65,6 +67,16 @@ export default class SteeringBehavior {
     public SeekOff() : void {
         if(this.On(behavior_type.seek)) {
             this.m_iFlags ^= behavior_type.seek;
+        }
+    }
+
+    public FleeOn() : void {
+        this.m_iFlags |= behavior_type.flee;
+    }
+
+    public FleeOff() : void {
+        if(this.On(behavior_type.flee)) {
+            this.m_iFlags ^= behavior_type.flee;
         }
     }
 
@@ -99,8 +111,16 @@ export default class SteeringBehavior {
     // accumulated to that point
     public CalculatePrioritized() : Vector2D {
         let force : Vector2D = null;
+
+        if(this.On(behavior_type.flee)) {
+            force = this.Flee(this.m_pVehicle.World().Crosshair()).MultSelf(this.m_dWeightFlee);
+            if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
+                return this.m_vSteeringForce;
+            }
+        }
+
         if(this.On(behavior_type.seek)) {
-            force = this.Seek(this.m_pVehicle.World().Crosshair()).Mult(this.m_dWeightSeek);
+            force = this.Seek(this.m_pVehicle.World().Crosshair()).MultSelf(this.m_dWeightSeek);
             if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
                 return this.m_vSteeringForce;
             }
@@ -146,7 +166,13 @@ export default class SteeringBehavior {
 
     // this behavior moves the agent towards a target position
     private Seek(targetPos : Vector2D) : Vector2D {
-        let desiredVelocity = Vector2D.Vec2DNormalize(targetPos.Sub(this.m_pVehicle.Pos())).Mult(this.m_pVehicle.MaxSpeed());
-        return desiredVelocity.Sub(this.m_pVehicle.Velocity());
+        let desiredVelocity = Vector2D.Vec2DNormalize(targetPos.Sub(this.m_pVehicle.Pos())).MultSelf(this.m_pVehicle.MaxSpeed());
+        return desiredVelocity.SubSelf(this.m_pVehicle.Velocity());
+    }
+
+    // this behavior returns a vector that moves the agent away from a target position
+    private Flee(targetPos : Vector2D) : Vector2D {
+        let desiredVelocity = Vector2D.Vec2DNormalize(this.m_pVehicle.Pos().Sub(targetPos)).MultSelf(this.m_pVehicle.MaxSpeed());
+        return desiredVelocity.SubSelf(this.m_pVehicle.Velocity());
     }
 }

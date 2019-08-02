@@ -33,7 +33,8 @@ export default class GameWorld {
             node.parent = vehicleLayer;
             let pVehicle : Vehicle = node.getComponent(Vehicle);
             pVehicle.initVehicle(this, spawnPos, Utils.RandFloat() * Math.PI * 2, new Vector2D(0, 0), Prm.VehicleMass, Prm.MaxSteeringForce, Prm.MaxSpeed, Prm.MaxTurnRatePerSecond, Prm.VehicleScale);
-            pVehicle.Steering().SeekOn();
+            // pVehicle.Steering().SeekOn();
+            pVehicle.Steering().FleeOn();
             this.m_Vehicles.push(pVehicle);
         }
     }
