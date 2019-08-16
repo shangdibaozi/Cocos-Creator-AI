@@ -127,10 +127,16 @@ export default class Vector2D {
         return this.x * vec.x + this.y * vec.y;        
     }
 
+    public Rotate(radians : number) : Vector2D {
+        let v : Vector2D = new Vector2D();
+        v.RotateSelf(radians);
+        return v;
+    }
+
     public RotateSelf(radians : number) : Vector2D {
-        var sin = Math.sin(radians);
-        var cos = Math.cos(radians);
-        var x = this.x;
+        let sin = Math.sin(radians);
+        let cos = Math.cos(radians);
+        let x = this.x;
         this.x = cos * x - sin * this.y;
         this.y = sin * x + cos * this.y;
         return this;
@@ -154,6 +160,21 @@ export default class Vector2D {
     public Truncate(max : number) : void {
         if(this.Length() > max) {
             this.Normalize().MultSelf(max);
+        }
+    }
+
+    public static WrapAround(pos : Vector2D, maxX : number, maxY : number) : void {
+        if(pos.x > maxX) {
+            pos.x = 0;
+        }
+        if(pos.x < 0) {
+            pos.x = maxX;
+        }
+        if(pos.y < 0) {
+            pos.y = maxY;
+        }
+        if(pos.y > maxY) {
+            pos.y = 0;
         }
     }
 }

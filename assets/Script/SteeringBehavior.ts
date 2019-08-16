@@ -1,6 +1,7 @@
 import Vector2D from './Common/Vector2D';
 import Vehicle from './Vehicle';
 import Prm from './Prm';
+import Utils from './Utils';
 
 export enum summing_method {
     weighted_average,
@@ -35,6 +36,14 @@ enum Deceleration {
     fast = 1
 }
 
+
+// the radius of the constraining circle for the wander behavior
+const WanderRad = 1.2;
+// distance the wander circle is projected in front of the agent
+const WanderDist = 2.0;
+// the maximum amount of displacement along the circle each frame
+const WanderJitterPerSec = 80.0;
+
 export default class SteeringBehavior {
 
     // a pointer to the owner of this instance
@@ -42,6 +51,13 @@ export default class SteeringBehavior {
 
     // the steering force created by the combined effect of all the selected behaviors
     private m_vSteeringForce : Vector2D = new Vector2D();
+
+    // these can be used to keep track of friends, pursuers, or prey
+    private m_pTargetAgent1 : Vehicle = null;
+    private m_pTargetAgent2 : Vehicle = null;
+
+    // the current target
+    private m_vTarget : Vector2D = new Vector2D();
 
     // what type of method is used to sum any active behavior
     private m_SummingMethod : summing_method = null;
@@ -56,6 +72,19 @@ export default class SteeringBehavior {
     private m_dWeightArrive : number = 0;
     private m_dWeightSeek : number = 0;
     private m_dWeightFlee : number = 0;
+    private m_dWeightWander : number = 0;
+    private m_dWeightPursuit : number = 0;
+    private m_dWeightEvade : number = 0;
+
+    private m_dWanderJitter : number = 0;
+    private m_dWanderRadius : number = 0;
+    private m_dWanderDistance : number = 0;
+
+    // the current position on the wander circle the agent is attempting to steer towards
+    m_vWanderTarget : Vector2D = new Vector2D();
+
+    // any offset used for formations or offset pursuit
+    private m_vOffset : Vector2D = new Vector2D();
 
     /**
      *
@@ -67,7 +96,19 @@ export default class SteeringBehavior {
         this.m_dWeightSeek = Prm.SeekWeight;
         this.m_dWeightFlee = Prm.FleeWeight;
         this.m_dWeightArrive = Prm.ArriveWeight;
+        this.m_dWeightWander = Prm.WanderWeight;
+        this.m_dWeightPursuit = Prm.PursuitWeight;
+        this.m_dWeightEvade = Prm.EvadeWeight;
         this.m_Deceleration = Deceleration.normal;
+
+        this.m_dWanderJitter = WanderJitterPerSec;
+        this.m_dWanderRadius = WanderRad;
+        this.m_dWanderDistance = WanderDist;
+
+        // stuff for the wander behavior
+        let theta = Utils.RandFloat() * Math.PI * 2;
+        this.m_vWanderTarget.x = this.m_dWanderRadius * Math.cos(theta);
+        this.m_vWanderTarget.y = this.m_dWanderRadius * Math.sin(theta);
     }
 
     public SeekOn() : void {
@@ -98,6 +139,46 @@ export default class SteeringBehavior {
         if(this.On(behavior_type.arrive)) {
             this.m_iFlags ^= behavior_type.arrive;
         }
+    }
+
+    public WanderOn() : void {
+        this.m_iFlags |= behavior_type.wander;
+    }
+
+    public WanderOff() : void {
+        if(this.On(behavior_type.wander)) {
+            this.m_iFlags ^= behavior_type.wander;
+        }
+    }
+
+    public PursuitOn(v : Vehicle) {
+        this.m_iFlags |= behavior_type.pursuit;
+        this.m_pTargetAgent1 = v;
+    }
+
+    public PursuitOff() : void {
+        if(this.On(behavior_type.pursuit)) {
+            this.m_iFlags ^= behavior_type.pursuit;
+        }
+    }
+
+    public EvadeOn(v : Vehicle) : void {
+        this.m_iFlags |= behavior_type.evade;
+        this.m_pTargetAgent1 = v;
+    }
+
+    public EvadeOff() : void {
+        this.m_iFlags &= ~behavior_type.evade;
+    }
+
+    public OffsetPursuitOn(v1 : Vehicle, offset : Vector2D) : void {
+        this.m_iFlags |= behavior_type.offset_pursuit;
+        this.m_vOffset.Assignment(offset);
+        this.m_pTargetAgent1 = v1;
+    }
+
+    public OffsetPursuitOff() {
+        this.m_iFlags &= ~behavior_type.offset_pursuit;
     }
 
     public Calculate() : Vector2D {
@@ -133,6 +214,13 @@ export default class SteeringBehavior {
         let force : Vector2D = null;
         let crosshair : Vector2D = this.m_pVehicle.World().Crosshair();
 
+        if(this.On(behavior_type.evade)) {
+            force = this.Evade(this.m_pTargetAgent1).MultSelf(this.m_dWeightEvade);
+            if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
+                return this.m_vSteeringForce;
+            }
+        }
+
         if(this.On(behavior_type.flee)) {
             force = this.Flee(crosshair).MultSelf(this.m_dWeightFlee);
             if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
@@ -149,6 +237,27 @@ export default class SteeringBehavior {
 
         if(this.On(behavior_type.arrive)) {
             force = this.Arrive(crosshair, this.m_Deceleration).MultSelf(this.m_dWeightArrive);
+            if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
+                return this.m_vSteeringForce;
+            }
+        }
+
+        if(this.On(behavior_type.wander)) {
+            force = this.Wander().MultSelf(this.m_dWeightWander);
+            if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
+                return this.m_vSteeringForce;
+            }
+        }
+
+        if(this.On(behavior_type.pursuit)) {
+            force = this.Pursuit(this.m_pTargetAgent1).MultSelf(this.m_dWeightPursuit);
+            if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
+                return this.m_vSteeringForce;
+            }
+        }
+
+        if(this.On(behavior_type.offset_pursuit)) {
+            force = this.OffsetPursuit(this.m_pTargetAgent1, this.m_vOffset);
             if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
                 return this.m_vSteeringForce;
             }
@@ -226,5 +335,77 @@ export default class SteeringBehavior {
         }
 
         return new Vector2D(0, 0);
+    }
+
+    // this behavior predicts where an agent will be in time T and seeks towards that point to intercept it
+    private Pursuit(evader : Vehicle) : Vector2D {
+        // if the evader is ahead and facing the agent then we can just seek for the evader's current position.
+        let toEvader : Vector2D = evader.Pos().Sub(this.m_pVehicle.Pos());
+        let relativeHeading = this.m_pVehicle.Heading().Dot(evader.Heading());
+
+        if(toEvader.Dot(this.m_pVehicle.Heading()) > 0 && relativeHeading < -0.95) { // Math.acos(0.95) = 18 degs
+            return this.Seek(evader.Pos());
+        }
+
+        // Not considered ahead so we predict where the evader will be.
+        // the lookahead time is propotional to the distance between the evader
+        // and the pursuer; and is inversely proportional to the sum of the agent's
+        // velocities
+        let lookAheadTime = toEvader.Length() / (this.m_pVehicle.MaxSpeed() + evader.Speed());
+        // now seek to the predicted future position of the evader
+        return this.Seek(evader.Pos().Add(evader.Velocity().Mult(lookAheadTime)));
+    }
+
+    // this behaivor maintains a position, in the direction of offset from the target vehicle
+    private OffsetPursuit(leader : Vehicle, offset : Vector2D) : Vector2D {
+        let headig : Vector2D = leader.Heading();
+        let worldOffsetPos : Vector2D = offset.Rotate(Math.atan2(headig.y, headig.x));
+        worldOffsetPos.AddSelf(leader.Pos());
+        let toOffset : Vector2D = worldOffsetPos.SubSelf(this.m_pVehicle.Pos());
+        // the lookahead time is propotional to the distance between the leader and the pursuer;
+        // and is inversely proportional to the sum of both agent's velocities
+        let lookAheadTime : number = toOffset.Length() / (this.m_pVehicle.MaxSpeed() + leader.Speed());
+        // now Arrive at the predicted future position of the offset
+        return this.Arrive(worldOffsetPos.AddSelf(leader.Velocity().Mult(lookAheadTime)), Deceleration.fast);
+    }
+
+    // this behavior attempts to evade a pursuer
+    private Evade(pursuer : Vehicle) : Vector2D {
+        // not necessary to include the check for facing direction this time
+        let toPursuer = pursuer.Pos().Sub(this.m_pVehicle.Pos());
+        // uncomment the following two lines to have Evade only consider pursuers within a 'threat range'
+        let threatRange = 200.0;
+        if(toPursuer.LengthSq() > threatRange * threatRange) {
+            return new Vector2D();
+        }
+
+        // the lookahead time is propotional to the distance between the pursuer
+        // and the pursuer; and is inversely proportional to the sum of the agent's velocities
+        let lookAheadTime = toPursuer.Length() / (this.m_pVehicle.MaxSpeed() + pursuer.Speed());
+        // now flee away from predicted future position of the pursuer
+        return this.Flee(pursuer.Pos().Add(pursuer.Velocity().Mult(lookAheadTime)));
+    }
+
+    // this behavior makes the agent wander about randomly
+    private Wander() : Vector2D {
+        // this behavior is dependent on the update rate, so this line must be included when using time independent framerate.
+        let jitterThisTimeSlice = this.m_dWanderJitter * this.m_pVehicle.TimeElapsed();
+
+        // first, add a small random vector to the target's position
+        this.m_vWanderTarget.x += Utils.RandomClamped() * jitterThisTimeSlice;
+        this.m_vWanderTarget.y += Utils.RandomClamped() * jitterThisTimeSlice;
+
+        // reproject this new vector back on to a unit circle
+        this.m_vWanderTarget.Normalize();
+
+        // increase the length of the vector to the same as the radius of the wander circle
+        this.m_vWanderTarget.MultSelf(this.m_dWanderRadius);
+
+        // move the target into a position WanderDist in front of the agent
+        let target = this.m_vWanderTarget.Add(new Vector2D(this.m_dWanderDistance, 0));
+        target.RotateSelf(Math.atan2(this.m_pVehicle.Heading().y, this.m_pVehicle.Heading().y));
+        target.AddSelf(this.m_pVehicle.Pos());
+        
+        return target.SubSelf(this.m_pVehicle.Pos());
     }
 }

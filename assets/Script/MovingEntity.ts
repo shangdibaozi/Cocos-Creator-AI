@@ -22,6 +22,7 @@ export default class MovingEnity extends BaseGameEntity {
 
     public initMovingEntity(position : Vector2D, radius : number, velocity : Vector2D, max_speed : number, heading : Vector2D, mass : number, scale : Vector2D, turn_rate : number, max_force : number) : void {
         this.initBaseGameEntity(0, position, radius);
+        this.m_vVelocity.Assignment(velocity);
         this.m_dMaxSpeed = max_speed;
         this.m_vHeading.Assignment(heading);
         this.m_dMass = mass;

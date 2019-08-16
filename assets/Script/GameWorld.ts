@@ -35,8 +35,14 @@ export default class GameWorld {
             pVehicle.initVehicle(this, spawnPos, Utils.RandFloat() * Math.PI * 2, new Vector2D(0, 0), Prm.VehicleMass, Prm.MaxSteeringForce, Prm.MaxSpeed, Prm.MaxTurnRatePerSecond, Prm.VehicleScale);
             // pVehicle.Steering().SeekOn();
             // pVehicle.Steering().FleeOn();
-            pVehicle.Steering().ArriveOn();
+            // pVehicle.Steering().ArriveOn();
+            // pVehicle.Steering().WanderOn();
+
             this.m_Vehicles.push(pVehicle);
+        }
+        for(let i = 0; i < Prm.NumAgents - 1; i++) {
+            this.m_Vehicles[i].Steering().EvadeOn(this.m_Vehicles[Prm.NumAgents - 1]);
+            this.m_Vehicles[Prm.NumAgents - 1].Steering().OffsetPursuitOn(this.m_Vehicles[i], new Vector2D(100, 100));
         }
     }
 
@@ -54,5 +60,13 @@ export default class GameWorld {
         for(let i = 0, len = this.m_Vehicles.length; i < len; i++) {
             this.m_Vehicles[i].Update(time_elapsed);
         }
+    }
+
+    public cxClient() : number {
+        return this.m_cxClient;
+    }
+
+    public cyClient() : number {
+        return this.m_cyClient;
     }
 }

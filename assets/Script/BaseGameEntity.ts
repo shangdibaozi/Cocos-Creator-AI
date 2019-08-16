@@ -42,52 +42,52 @@ export default class BaseGameEntity extends cc.Component {
         this.m_vPos.Assignment(pos);
     }
 
-    Pos() {
+    public Pos() : Vector2D {
         return this.m_vPos;
     }
 
-    SetPos(new_pos : Vector2D) {
+    public SetPos(new_pos : Vector2D) : void {
         this.m_vPos.x = new_pos.x;
         this.m_vPos.y = new_pos.y;
     }
 
-    BRadius() {
+    public BRadius() : number {
         return this.m_dBoudingRadius;
     }
 
-    SetBRadius(r : number) {
+    public SetBRadius(r : number) : void {
         this.m_dBoudingRadius = r;
     }
 
-    ID() {
+    public ID() : number {
         return this.m_ID;
     }
 
-    IsTagged() {
+    public IsTagged() : boolean {
         return this.m_bTag;
     }
 
-    Tag() {
+    public Tag() : void {
         this.m_bTag = true;
     }
 
-    UnTag() {
+    public UnTag() : void {
         this.m_bTag = false;
     }
 
-    Scale() {
+    public Scale() : Vector2D {
         return this.m_vScale;
     }
 
-    SetScale(val : Vector2D) {
+    public SetScale(val : Vector2D) : void {
 
     }
 
-    EntityType() {
+    public EntityType() : number {
         return this.m_EntityType;
     }
 
-    SetEntityType(new_type : number) {
+    public SetEntityType(new_type : number) : void {
         this.m_EntityType = new_type;
     }
 }

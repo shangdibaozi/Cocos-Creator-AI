@@ -16,17 +16,23 @@ export default class Vehicle extends MovingEnity {
     // this vector represents the average of the vehicle's heading
     private m_vSmoothedHeading : Vector2D = new Vector2D();
     // when true, smooting is active
-    
-    m_vecVehicleVB : Array<Vector2D>[] = [];
 
-    initVehicle(world : GameWorld, position : Vector2D, rotation : number, velocity : Vector2D, mass : number, max_force : number, max_speed : number, max_turn_rate : number, scale : number) {
+
+    private m_dTimeElapsed : number = 0;
+    
+    private m_vecVehicleVB : Array<Vector2D>[] = [];
+
+    public initVehicle(world : GameWorld, position : Vector2D, rotation : number, velocity : Vector2D, mass : number, max_force : number, max_speed : number, max_turn_rate : number, scale : number) {
         this.initMovingEntity(position, scale, velocity, max_speed, new Vector2D(Math.sin(rotation), -Math.cos(rotation)), mass, new Vector2D(scale, scale), max_turn_rate, max_force);
         this.m_pWorld = world;
         this.m_pSteering = new SteeringBehavior(this);
+        this.m_dTimeElapsed = 0;
     }
 
     // updates the vehicle's position and orientation
-    Update(time_elapsed : number) : void {
+    public Update(time_elapsed : number) : void {
+        // update the time elapsed
+        this.m_dTimeElapsed = time_elapsed;
         // Keep a record of its old position so we can update its call later in this method
         let OldPos : Vector2D = this.Pos();
         // calculate the combine force from each steering behavior in the vehicle's list
@@ -50,6 +56,8 @@ export default class Vehicle extends MovingEnity {
             this.m_vSide.Assignment(this.m_vHeading.Perp());
         }
 
+        Vector2D.WrapAround(this.m_vPos, this.m_pWorld.cxClient(), this.m_pWorld.cyClient());
+
         this.UpdateNode();
     }
 
@@ -70,5 +78,9 @@ export default class Vehicle extends MovingEnity {
         this.node.y = this.m_vPos.y;
 
         this.node.rotation = Math.atan2(this.m_vHeading.x, this.m_vHeading.y) * cc.macro.DEG;
+    }
+
+    public TimeElapsed() : number {
+        return this.m_dTimeElapsed;
     }
 }
