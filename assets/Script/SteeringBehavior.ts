@@ -408,4 +408,8 @@ export default class SteeringBehavior {
         
         return target.SubSelf(this.m_pVehicle.Pos());
     }
+
+    private ObstacleAvoidance(obstacles) {
+        
+    }
 }
