@@ -1,5 +1,5 @@
 let Prm = {
-    NumAgents : 2,
+    NumAgents : 12,
     VehicleMass : 1.0,
     SteeringForceTweaker : 200,
     SteeringForce : 2.0,
@@ -13,6 +13,8 @@ let Prm = {
     WanderWeight : 1.0,
     PursuitWeight : 1.0,
     EvadeWeight : 1.0,
+    SeparationWeight : 1.0,
+    CohesionWeight : 1.0,
 };
 
 
@@ -23,6 +25,8 @@ Prm.WanderWeight = 1.0 * Prm.SteeringForceTweaker;
 Prm.ArriveWeight = 1.0 * Prm.SteeringForceTweaker;
 Prm.PursuitWeight = 1.0 * Prm.SteeringForceTweaker;
 Prm.EvadeWeight = 1.0 * Prm.SteeringForceTweaker;
+Prm.SeparationWeight = 1.0 * Prm.SteeringForceTweaker;
+Prm.CohesionWeight = 1.0 * Prm.SteeringForceTweaker;
 
 
 export default Prm;

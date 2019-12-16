@@ -17,7 +17,7 @@ export enum behavior_type {
     wander = 0x00010,		// 徘徊、游荡
     cohesion = 0x00020,		// 聚集
     separation = 0x00040,		// 分离
-    allignment = 0x00080,
+    alignment = 0x00080,
     obstacle_avoidance = 0x00100,		// 避障
     wall_avoidance = 0x00200,
     follow_path = 0x00400,
@@ -80,6 +80,15 @@ export default class SteeringBehavior {
     private m_dWanderRadius : number = 0;
     private m_dWanderDistance : number = 0;
 
+    private m_dWeightSeparation : number = 0;
+    private m_dWeightCohesion : number = 0;
+
+    // how far the agent can 'see'
+    private m_dViewDistance : number = 0;
+
+    // is cell space partitioning to be used or not
+    private m_bCellSpaceOn : boolean = false;
+
     // the current position on the wander circle the agent is attempting to steer towards
     m_vWanderTarget : Vector2D = new Vector2D();
 
@@ -105,10 +114,17 @@ export default class SteeringBehavior {
         this.m_dWanderRadius = WanderRad;
         this.m_dWanderDistance = WanderDist;
 
+        this.m_dWeightSeparation = Prm.SeparationWeight;
+        this.m_dWeightCohesion = Prm.CohesionWeight;
+
         // stuff for the wander behavior
         let theta = Utils.RandFloat() * Math.PI * 2;
         this.m_vWanderTarget.x = this.m_dWanderRadius * Math.cos(theta);
         this.m_vWanderTarget.y = this.m_dWanderRadius * Math.sin(theta);
+    }
+
+    public isSpacePartitioningOn() : boolean {
+        return this.m_bCellSpaceOn;
     }
 
     public SeekOn() : void {
@@ -167,6 +183,50 @@ export default class SteeringBehavior {
         this.m_pTargetAgent1 = v;
     }
 
+    public CohesionOn() : void {
+        this.m_iFlags |= behavior_type.cohesion;
+    }
+
+    public CohesionOff() : void {
+        if(this.On(behavior_type.cohesion)) {
+            this.m_iFlags ^= behavior_type.cohesion;
+        }
+    }
+
+    public SeparationOn() : void {
+        this.m_iFlags |= behavior_type.separation;
+    }
+
+    public SeparationOff() : void {
+        if(this.On(behavior_type.separation)) {
+            this.m_iFlags ^= behavior_type.separation;
+        }
+    }
+
+    public AlignmentOn() : void {
+        this.m_iFlags |= behavior_type.alignment;
+    }
+
+    public AlignmentOff() : void {
+        if(this.On(behavior_type.alignment)) {
+            this.m_iFlags ^= behavior_type.alignment;
+        }
+    }
+
+    public FlockingOn() : void {
+        this.CohesionOn();
+        this.AlignmentOn();
+        this.SeparationOn();
+        this.WanderOn();
+    }
+
+    public FlockingOff() : void {
+        this.CohesionOff();
+        this.AlignmentOff();
+        this.SeparationOff();
+        this.WanderOff();
+    }
+
     public EvadeOff() : void {
         this.m_iFlags &= ~behavior_type.evade;
     }
@@ -184,6 +244,21 @@ export default class SteeringBehavior {
     public Calculate() : Vector2D {
         // reset the steering force
         this.m_vSteeringForce.Zero();
+
+        // use space partitioning to calculate the neighbours of this vehicle
+        // if switched on. If not, use the standard tagging system
+        if(!this.isSpacePartitioningOn()) {
+            // tag neighbors if any of the following 3 group behaviours are switched on
+            if(this.On(behavior_type.separation) || this.On(behavior_type.alignment) || this.On(behavior_type.cohesion)) {
+                this.m_pVehicle.World().TagVehiclesWithinViewRange(this.m_pVehicle, this.m_dViewDistance);
+            }
+        }
+        else {
+            // calculate neighbours in cell-space if any of the following 3 group behaviors are switched on
+            if(this.On(behavior_type.separation) || this.On(behavior_type.alignment) || this.On(behavior_type.cohesion)) {
+                // this.m_pVehicle.World().CellSpace().CalculateNeighbors(this.m_pVehicle.Pos(), this.m_dViewDistance);
+            }
+        }
 
 
         switch(this.m_SummingMethod) {
@@ -207,12 +282,20 @@ export default class SteeringBehavior {
     }
 
     // this method calls each active steering behavior in order of priority
-    // and acumulates their forces until the max steering force magnitude
+    // and accumulates their forces until the max steering force magnitude
     // is reached, at which time the function returns the steering force
     // accumulated to that point
     public CalculatePrioritized() : Vector2D {
         let force : Vector2D = null;
         let crosshair : Vector2D = this.m_pVehicle.World().Crosshair();
+
+        if(this.On(behavior_type.wall_avoidance)) {
+
+        }
+
+        if(this.On(behavior_type.obstacle_avoidance)) {
+
+        }
 
         if(this.On(behavior_type.evade)) {
             force = this.Evade(this.m_pTargetAgent1).MultSelf(this.m_dWeightEvade);
@@ -225,6 +308,40 @@ export default class SteeringBehavior {
             force = this.Flee(crosshair).MultSelf(this.m_dWeightFlee);
             if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
                 return this.m_vSteeringForce;
+            }
+        }
+
+        // these next three can be combined for flocking behavior(wander is also a good behavior to add into this mix)
+        if(!this.isSpacePartitioningOn()) {
+            if(this.On(behavior_type.separation)) {
+                force = this.Separation(this.m_pVehicle.World().Agents()).MultSelf(this.m_dWeightSeparation);
+                if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
+                    return this.m_vSteeringForce;
+                }
+            }
+
+            if(this.On(behavior_type.alignment)) {
+
+            }
+
+            if(this.On(behavior_type.cohesion)) {
+                force = this.Cohesion(this.m_pVehicle.World().Agents()).MultSelf(this.m_dWeightCohesion);
+                if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
+                    return this.m_vSteeringForce;
+                }
+            }
+        }
+        else {
+            if(this.On(behavior_type.separation)) {
+
+            }
+
+            if(this.On(behavior_type.alignment)) {
+
+            }
+
+            if(this.On(behavior_type.cohesion)) {
+
             }
         }
 
@@ -261,6 +378,18 @@ export default class SteeringBehavior {
             if(!this.AccumulateForce(this.m_vSteeringForce, force)) {
                 return this.m_vSteeringForce;
             }
+        }
+
+        if(this.On(behavior_type.interpose)) {
+
+        }
+
+        if(this.On(behavior_type.hide)) {
+
+        }
+
+        if(this.On(behavior_type.follow_path)) {
+
         }
 
         return this.m_vSteeringForce;
@@ -411,5 +540,51 @@ export default class SteeringBehavior {
 
     private ObstacleAvoidance(obstacles) {
         
+    }
+
+    /**
+     * this calculates a force repelling from the other neighbor
+     * @param neighbors 
+     */
+    private Separation(neighbors : Vehicle[]) {
+        let steeringForce : Vector2D = new Vector2D();
+        for(let i = 0, len = neighbors.length; i < len; i++) {
+            // make sure this agent isn't included in the calculations and that the agent being examined is close enough.
+            // also make sure it doesn't include the evade target
+            if((neighbors[i] !== this.m_pVehicle) && neighbors[i].IsTagged() && (neighbors[i] !== this.m_pTargetAgent1)) {
+                let toAgent = this.m_pVehicle.Pos().Sub(neighbors[i].Pos());
+                // scale the force inversely proportional to the agents distance from its neighbor.
+                steeringForce.AddSelf(Vector2D.Vec2DNormalize(toAgent).DivSelf(toAgent.Length()));
+            }
+        }
+        return steeringForce;
+    }
+
+    /**
+     * returns a steering force that attempts to move the agent towards the center of mass of the agents in its immediate area
+     * @param neighbors 
+     */
+    private Cohesion(neighbors : Vehicle[]) {
+        // first find the center of mass of all the agents
+        let centerOfMass = new Vector2D();
+        let steeringForce = new Vector2D();
+        let neighborCount = 0;
+
+        for(let i = 0, len = neighbors.length; i < len; i++) {
+            if((neighbors[i] !== this.m_pVehicle) && neighbors[i].IsTagged() && (neighbors[i] !== this.m_pTargetAgent1)) {
+                centerOfMass.AddSelf(neighbors[i].Pos());
+                neighborCount++;
+            }
+        }
+
+        if(neighborCount > 0) {
+            // the center of mass is the average of the sum of positions
+            centerOfMass.DivSelf(neighborCount);
+            // now seek towards that position;
+            steeringForce = this.Seek(centerOfMass);
+        }
+
+        // the magnitude of cohesion is usually much larger than separation or allignment so it usually helps to normalize it.
+        return steeringForce.Normalize();
     }
 }

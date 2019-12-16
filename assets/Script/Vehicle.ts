@@ -77,7 +77,7 @@ export default class Vehicle extends MovingEnity {
         this.node.x = this.m_vPos.x;
         this.node.y = this.m_vPos.y;
 
-        this.node.rotation = Math.atan2(this.m_vHeading.x, this.m_vHeading.y) * cc.macro.DEG;
+        this.node.angle = -Math.atan2(this.m_vHeading.x, this.m_vHeading.y) * cc.macro.DEG;
     }
 
     public TimeElapsed() : number {

@@ -4,13 +4,15 @@
 			"path": "."
 		},
 		{
-			"path": "C:\\CocosCreator_2.0.10\\resources\\engine"
+			"path": "D:\\Cocos Creator\\CocosCreator_2.1.3\\resources\\engine"
 		}
 	],
 	"settings": {
 		"files.exclude": {
 			"*.min.js": true,
-			"packages": true,
+			"library": true,
+			"local": true,
+			"temp": true,
 			"settings" : true,
 			".vscode" : true,
 			"build" : true,
@@ -26,6 +28,7 @@
 			".eslintrc.json" : true,
 			"**/*.TXT" : true,
 			"**/*.txt" : true,
+			"**/*.meta" : true,
 		}
 	},
 }
