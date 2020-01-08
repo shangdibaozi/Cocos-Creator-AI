@@ -52,7 +52,7 @@ export default class MovingEnity extends BaseGameEntity {
     }
 
     public SetMaxSpeed(new_speed : number) : void { 
-        this.m_dMaxForce = new_speed;
+        this.m_dMaxSpeed = new_speed;
     }
 
     public MaxForce() : number {
